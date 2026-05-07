@@ -1,0 +1,33 @@
+name: artifacts-data
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  artifacts-producer:
+    name: Producer artifact
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Create artifact file
+        run: |
+          echo "This is stored as an artifact!" > artifact.txt
+          echo "Generated on $(date)" >> artifact.txt
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: artifact.txt
+          
+  artifacts-consumer:
+    name: Consumer artifact
+    runs-on: ubuntu-24.04
+    needs: artifacts-producer
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      
+      - name: Cat artifact file
+        run: cat artifact.txt
