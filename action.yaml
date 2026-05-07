@@ -8,15 +8,13 @@ inputs:
 outputs:
   random-number:
     description: 'Random number'
-    value: ${{ steps.generate-random-number.outputs.random }}
+    value: ${{ steps.generate-random-number.outputs.random-number }}
 runs:
   using: 'composite'
   steps:
     - name: Set Greeting
-      run: echo "Hello, $INPUT_WHO-TO-GREET."
+      run: echo "Hello, ${{ inputs.who-to-greet }}."
       shell: bash
-      env:
-        INPUT_WHO-TO-GREET: ${{ inputs.who-to-greet }}
     
     - name: Generate random number
       id: generate-random-number
