@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - "filters/*.md"
-      - "filters/*.txt"
+      - "!filters/*.txt"
   
   schedule:
     - cron: "0 0 * * *" # Runs daily at midnight UTC
