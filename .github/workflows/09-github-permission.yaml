@@ -20,8 +20,8 @@ jobs:
       - name: Attempt to add a label (expected to fail)
         env:
           GH_TOKEN: ${{ github.token }}
-          run: |
-            gh pr edit 1 --add-label "documentation"
+        run: |
+          gh pr edit 1 --add-label "documentation"
       - name: Confirm the failure
         if: failure()
         run: echo "Write operation was blocked - token is read-only."
