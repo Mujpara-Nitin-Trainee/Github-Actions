@@ -1,0 +1,37 @@
+name: Caching
+
+on: 
+  workflow_dispatch:
+  
+jobs:
+  action-cache:
+    name: Demo cache
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Restore cache
+        id: restore-cache
+        uses: actions/cache@v4
+        with:
+          path: demo-cache
+          key: demo-cache-key
+          
+      # Populate directory if cache was not hit
+      - name: Populate cache directory
+        if: steps.demo-cache.outputs.cache-hit != 'true'
+        run: |
+          echo "Cache miss - generating contents"
+          mkdir -p demo-cache
+          date > demo-cache/timestamp.txt
+          
+      # Save cache only if we generated new contents
+      - name: Save cache
+        if: steps.demo-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: demo-cache
+          key: demo-cache-key
+          
+      - name: Verify cache contents
+        run: |
+          echo "cache-hit? -> ${{ steps.demo-cache.outputs.cache-hit }}"
+          cat demo-cache/timestamp.txt
