@@ -5,7 +5,7 @@ on:
   
 jobs:
   read-only-pr:
-    runs: ubuntu-24.04
+    runs-on: ubuntu-24.04
     permissions:
       pull-requests: read
     continue-on-error: true
@@ -27,7 +27,7 @@ jobs:
         run: echo "Write operation was blocked - token is read-only."
         
   read-write-pr:
-    runs: ubuntu-24.04
+    runs-on: ubuntu-24.04
     permissions:
       pull-requests: write
     steps:
