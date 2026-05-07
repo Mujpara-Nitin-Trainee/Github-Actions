@@ -5,6 +5,7 @@ on:
 jobs:
   producer:
     runs-on: ubuntu-latest
+    
     outputs:
       foo: ${{ steps.generate-foo.outputs.foo }}
     steps:
@@ -19,10 +20,10 @@ jobs:
           # 2) Environment variable 
           echo "FOO=${foo}" >> "$GITHUB_ENV"
           
-      -name: Inspect values inside producer job
-       run: |
-         echo "FOO (set via GITHUB_ENV): $FOO"
-         echo "foo (set output): ${{ steps.generate-foo.outputs.foo }}"
+      - name: Inspect values inside producer job
+        run: |
+          echo "FOO (set via GITHUB_ENV): $FOO"
+          echo "foo (set output): ${{ steps.generate-foo.outputs.foo }}"
          
   consumer:
     runs-on: ubuntu-latest
