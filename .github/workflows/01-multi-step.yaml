@@ -1,0 +1,23 @@
+name: Step types
+
+on:
+  workflow_dispatch:
+
+jobs:
+  step-types-01:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, World!"
+      
+  step-types-02:
+    runs-on: ubuntu-latest
+    steps:
+      - run: print("Hello, World!")
+        shell: python
+        
+  step-types-03:
+    runs-on: ubuntu-latest
+    steps:
+      - use: actions/hello-world
+        with:
+          who-to-greet: "World"
