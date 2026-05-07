@@ -10,7 +10,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - id: composite-action-instance
-      - uses: ./authorizing-action/composite-action/action.yaml
+        uses: ./authorizing-action/composite-action/action.yaml
         with:
           who-to-greet: "from composite action in hello-world-1!"
       - env:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: composite-action-instance
-      - uses: ./authorizing-action/composite-action/action.yaml
+        uses: ./authorizing-action/composite-action/action.yaml
         with:
           who-to-greet: "from composite action in hello-world-2!"
       - env:
