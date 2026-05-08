@@ -1,0 +1,28 @@
+name: Reusable Workflow Source
+
+on:
+  workflow_call:
+    inputs:
+      foo:
+        required: true
+        type: string
+    secrets:
+      EXAMPLE_REPOSITORY_SECRET:
+        required: true
+  
+jobs:
+  reusable-workflow-job:
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-24.04
+    env:
+       # Inject repository-level secret & variable into the shell
+      EXAMPLE_REPOSITORY_SECRET: ${{ secrets.EXAMPLE_REPOSITORY_SECRET }}
+      EXAMPLE_REPOSITORY_VARIABLE: ${{ vars.EXAMPLE_REPOSITORY_VARIABLE }}
+      
+    steps:
+      - name: job in reusable workflow
+        run: |
+          echo "Repo secret (masked):   $EXAMPLE_REPOSITORY_SECRET"
+          echo "Repo variable:          $EXAMPLE_REPOSITORY_VARIABLE"
+          echo "Env secret (masked):    $EXAMPLE_ENVIRONMENT_SECRET"
+          echo "Env Variable:           $EXAMPLE_ENVIRONMENT_VARIABLE"  

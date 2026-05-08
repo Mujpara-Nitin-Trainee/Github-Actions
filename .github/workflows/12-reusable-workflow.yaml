@@ -8,5 +8,6 @@ jobs:
     name: Invoke reusable workflow using path
     uses: ./.github/workflows/05-secrets-and-variables.yaml
     with:
+      foo: bar
       environment: staging
     secrets: inherit
