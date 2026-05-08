@@ -1,0 +1,12 @@
+name: Reusable Workflow Demo
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  call-reusable-workflow-path:
+    name: Invoke reusable workflow using path
+    uses: ./.github/workflows/05-secrets-and-variables.yaml
+    with:
+      environment: staging
+    secrets: inherit
