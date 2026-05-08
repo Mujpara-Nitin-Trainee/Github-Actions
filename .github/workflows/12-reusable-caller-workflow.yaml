@@ -6,6 +6,9 @@ on:
       foo:
         required: true
         type: string
+      environment:
+        required: true
+        type: string
     secrets:
       EXAMPLE_REPOSITORY_SECRET:
         required: true
